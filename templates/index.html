@@ -28,7 +28,30 @@
 
 
     			</div>
-            </div>
+            <form action="crear_disco" method="post">
+                <imput type="text" name="titulo">
+
+                </imput>
+                <imput type="text" name="artista">
+
+                </imput>
+                <imput type="submit">
+                    enviar
+                </imput>
+
+            </form>
+            <ul>
+                {% for disco in todos_los_discos %}
+            <li>
+                {{disco.titulo}} Por {{disco.artista}}
+            </li>
+                <li>
+                    prueba de disco
+                </li>
+            {% endfor %}
+
+            </ul>
+
 
 
 

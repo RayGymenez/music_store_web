@@ -1,58 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Tienda de musica online</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css" integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css"
+      integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK"
+      crossorigin="anonymous"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Nunito:wght@200;300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comforter&family=Nunito:wght@200;300&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
-
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
+  </head>
+  <body>
     <main>
-
-        <h1 class="display-4 text-center mt-4 titulo">Tienda de Música Online</h1>
-
-
+      <h1 class="display-4 text-center mt-4 titulo">Tienda de Música Online</h1>
     </main>
 
+    <div class="col text-center">
+      <button type="submit" name="nombre_discos" class="btn btn-primary btn-lg">
+        Discos
+      </button>
+      <button type="button" class="btn btn-primary btn-lg">Libros</button>
+      <button type="button" class="btn btn-primary btn-lg">Instrumentos</button>
+    </div>
+    <div class="container">
+      <div class="form-container">
+        <form action="/crear_disco" method="post">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Crear nuevo disco</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre del disco"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="precio" class="form-label">Indicar el precio</label>
+            <input
+              type="number"
+              class="form-control"
+              id="precio"
+              name="precio"
+              placeholder="Precio"
+            />
+          </div>
 
-            <div class="col text-center">
-                    <button type="submit" name="nombre_discos" class="btn btn-primary btn-lg">Discos</button>
-                    <button type="button" class="btn btn-primary btn-lg">Libros</button>
-                    <button type="button" class="btn btn-primary btn-lg">Instrumentos</button>
-
-
-    			</div>
-            <form action="crear_disco" method="post">
-                <imput type="text" name="titulo">
-
-                </imput>
-                <imput type="text" name="artista">
-
-                </imput>
-                <imput type="submit">
-                    enviar
-                </imput>
-
-            </form>
-            <ul>
-                {% for disco in todos_los_discos %}
-            <li>
-                {{disco.titulo}} Por {{disco.artista}}
-            </li>
-                <li>
-                    prueba de disco
-                </li>
-            {% endfor %}
-
-            </ul>
-
-
-
-
-1
+          <button type="submit" class="btn btn-primary">Crear</button>
+        </form>
+      </div>
+    </div>
+    <ul>
+      {% for disco in todos_los_discos %}
+      <li>{{disco.Nombre}} Por {{disco.Precio}}</li>
+      <li>prueba de disco</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

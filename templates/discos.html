@@ -1,14 +1,21 @@
-{% extends 'index.html' %} {% block lista %} {% for disco in todos_los_discos %}
-<div class="row p-2 d-flex justify-content-center">
-  <div class="col-md-8">
-    <div class="card">
-      <div class="card-header">
-        Disco Nro. {{ disco.id }}: {{ disco.title }}
+{% extends 'index.html' %} {% block lista %}
+<div class="row py-2 d-flex justify-content-around">
+  {% for disco in todos_los_discos %}
+  <div class="col-md-4 my-2">
+    <div class="card mx-2">
+      <div class="card-img">
+        <img
+          src="{{ url_for('static', filename='img/uploads/') }}{{disco.cover}}"
+          class="card-img-top"
+          alt="..."
+        />
       </div>
       <div class="card-body">
-        Lanzado en {{ disco.year }} por {{ disco.artist }}.
+        <h5 class="card-title">{{ disco.title }}</h5>
+        <p>Lanzado en {{ disco.year }} por {{ disco.artist }}.</p>
       </div>
     </div>
   </div>
+  {% endfor %}
 </div>
-{% endfor %} {% endblock %}
+{% endblock %}

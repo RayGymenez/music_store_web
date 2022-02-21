@@ -9,12 +9,14 @@ class Disco(Base):
     artist = Column(Text, nullable=False)
     year = Column(Integer, nullable=False)
     price = Column(Numeric, nullable=False)
+    cover = Column(Text)
 
-    def __init__(self, title, artist, year, price):
+    def __init__(self, title, artist, year, price, cover=None):
         self.title = title
         self.artist = artist
         self.year = year
         self.price = price
+        self.cover = cover
 
     def __repr__(self):
         return f"Disco {self.id}: {self.title} by {self.artist}"

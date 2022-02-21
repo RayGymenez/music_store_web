@@ -1,14 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine("sqlite:///database/discos.db",
-                       connect_args={"check_same_thread": False})
-engine = create_engine("sqlite:///database/libros.db",
-                       connect_args={"check_same_thread": False})
-engine = create_engine("sqlite:///database/instrumentos.db",
-                       connect_args={"check_same_thread": False})
-
-Session = sessionmaker(bind=engine)
-session = Session()
+engine = create_engine('sqlite:///database/articulos.sqlite')
+session = scoped_session(sessionmaker(autocommit=False,
+                                      autoflush=False,
+                                      bind=engine))
 Base = declarative_base()
+Base.query = session.query_property()

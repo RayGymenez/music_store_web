@@ -1,45 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Tienda de musica online</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css"
-      integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK"
-      crossorigin="anonymous"
-    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Comforter&family=Nunito:wght@200;300&display=swap"
-      rel="stylesheet"
-    />
+{% extends 'base.html'%} {% block botones%}
+<main>
+  <h1 class="display-4 text-center mt-4 titulo">Tienda de Música Online</h1>
+</main>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='main.css') }}"
-    />
-  </head>
-  <body>
-    <main>
-      <h1 class="display-4 text-center mt-4 titulo">Tienda de Música Online</h1>
-    </main>
+<div class="col text-center mb-4">
+  <a href="/discos" name="nombre_discos" class="btn btn-primary btn-lg">
+    Discos
+  </a>
+  <a href="/libros" class="btn btn-primary btn-lg">Libros</a>
+  <a href="/instrumentos" class="btn btn-primary btn-lg">Instrumentos</a>
+</div>
+{% endblock %}
 
-    <div class="col text-center">
-      <button type="submit" name="nombre_discos" class="btn btn-primary btn-lg">
-        Discos
-      </button>
-      <button type="button" class="btn btn-primary btn-lg">Libros</button>
-      <button type="button" class="btn btn-primary btn-lg">Instrumentos</button>
-    </div>
-
-    <ul>
-      {% for disco in todos_los_discos %}
-      <li>{{disco.Nombre}} Por {{disco.Precio}}</li>
-      <li>prueba de disco</li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>

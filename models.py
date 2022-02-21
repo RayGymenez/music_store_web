@@ -1,17 +1,20 @@
-import db
-from sqlalchemy import Column, Integer, Text
-from tokenize import Double
+from db import Base
+from sqlalchemy import Column, Integer, Numeric, Text
 
 
-class Disco(db.Base):
-    __tablename__ = "Discos"
+class Disco(Base):
+    __tablename__ = "discos"
     id = Column(Integer, primary_key=True)
-    Nombre = Column(Text, nullable=False)
-    Precio = Column(Double, nullable=False)
+    title = Column(Text, nullable=False)
+    artist = Column(Text, nullable=False)
+    year = Column(Integer, nullable=False)
+    price = Column(Numeric, nullable=False)
 
-    def __init__(self, nombre, precio):
-        self.Nombre = nombre
-        self.Precio = precio
+    def __init__(self, title, artist, year, price):
+        self.title = title
+        self.artist = artist
+        self.year = year
+        self.price = price
 
-        def __str__(self):
-            return "El disco {} vale {} euros.".format(self.Nombre, self.Precio)
+    def __repr__(self):
+        return f"Disco {self.id}: {self.title} by {self.artist}"

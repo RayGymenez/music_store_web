@@ -12,7 +12,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
+carritos = []
 
 @discos.route('/discos')
 def consultar_discos():
@@ -20,6 +20,9 @@ def consultar_discos():
     for disco in discos:
         print(disco)
     return render_template('discos.html', todos_los_discos=discos)
+
+@discos.route("/discos/agregar")
+def agregar():
 
 
 @discos.route('/discos/crear-disco', methods=['GET', 'POST'])

@@ -1,1 +1,30 @@
-{% extends 'index.html' %} {% block lista %} {% endblock %}
+{% extends 'index.html' %} {% block lista %} 
+<div class="row py-2 d-flex justify-content-around">
+    {% for libro in todos_los_libros %}
+    <div class="col-md-4 my-2">
+      <div class="card mx-2">
+        <div class="card-img">
+          <img
+            src="{{ url_for('static', filename='img/uploads/') }}{{libro.cover}}"
+            class="card-img-top"
+            alt="..."
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ libro.title }}</h5>
+          <p>escrito en {{ libro.year }} por {{ libro.author }}.</p>
+  
+          <form action="/discos/agregar" method="get">
+            <input type="hidden" name="titulo" value="{{ libro.title }}">
+            <input type="hidden" name="year" value="{{ libro.year }}">
+            <input type="hidden" name="artist" value="{{ libro.author }}">
+  
+            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
+  

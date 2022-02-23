@@ -1,3 +1,4 @@
+from crypt import methods
 import os
 import db
 from flask import Blueprint, render_template, request, redirect, url_for, flash
@@ -12,7 +13,8 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-carritos = []
+
+carrito = []
 
 @discos.route('/discos')
 def consultar_discos():
@@ -21,9 +23,11 @@ def consultar_discos():
         print(disco)
     return render_template('discos.html', todos_los_discos=discos)
 
-@discos.route("/discos/agregar")
-def agregar():
-
+@discos.route("/discos/agregar", methods=['GET', 'POST'])
+def agregar(*args):
+    carrito.append(*args)
+    print(carrito)
+    return redirect(url_for('discos.html'))
 
 @discos.route('/discos/crear-disco', methods=['GET', 'POST'])
 def crear_discos():

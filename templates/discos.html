@@ -13,7 +13,14 @@
       <div class="card-body">
         <h5 class="card-title">{{ disco.title }}</h5>
         <p>Lanzado en {{ disco.year }} por {{ disco.artist }}.</p>
-        <a href="/agregar" class="btn btn-primary">Añadir al carrito</a>
+
+        <form action="/discos/agregar" method="get">
+          <input type="hidden" name="titulo" value="{{ disco.title }}">
+          <input type="hidden" name="year" value="{{ disco.year }}">
+          <input type="hidden" name="artist" value="{{ disco.artist }}">
+
+          <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+        </form>
       </div>
     </div>
   </div>

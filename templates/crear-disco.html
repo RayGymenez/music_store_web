@@ -1,0 +1,23 @@
+{% extends 'index.html' %} {% block body %}
+<div class="container-md">
+  <div class="row">
+    <div class="col">
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="Default input"
+        aria-label="default input example"
+      />
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">With textarea</span>
+        <textarea class="form-control" aria-label="With textarea"></textarea>
+      </div>
+
+      <div class="input-group my-3">
+        <input type="file" class="form-control" id="inputGroupFile02" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

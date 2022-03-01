@@ -1,1 +1,29 @@
-{% extends 'index.html' %}
+{% extends 'index.html' %} {% block lista %}
+<div class="row py-2 d-flex justify-content-around">
+    {% for instrumento in todos_los_instrumentos %}
+    <div class="col-md-4 my-2">
+      <div class="card mx-2">
+        <div class="card-img">
+          <img
+            src="{{ url_for('static', filename='img/uploads/') }}{{instrumento.cover}}"
+            class="card-img-top"
+            alt="..."
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ instrumento.title }}</h5>
+          <p>marca {{ instrumento.marca }} {{ instrumento.price }}.</p>
+
+          <form action="/discos/agregar" method="get">
+            <input type="hidden" name="titulo" value="{{ instrumento.title }}">
+            <input type="hidden" name="marca" value="{{ instrumento.marca }}">
+            <input type="hidden" name="precio" value="{{ instrumento.price }}">
+
+            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}

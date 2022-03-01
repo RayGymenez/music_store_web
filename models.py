@@ -41,3 +41,21 @@ class Libro(Base):
 
     def __repr__(self):
         return f"Libro {self.id}: {self.title} escrito por {self.author} en {self.year}"
+
+
+class Instrumentos(Base):
+    __tablename__ = "instrumentos"
+    id = Column(Integer, primary_key=True)
+    title = Column(Text, nullable=False)
+    marca = Column(Text, nullable=False)
+    price = Column(Numeric, nullable=False)
+    cover = Column(Text)
+
+    def __init__(self, title, marca, price, cover=None):
+        self.title = title
+        self.marca = marca
+        self.price = price
+        self.cover = cover
+
+    def __repr__(self):
+        return f"Instrumento {self.id}: {self.title} marca {self.marca} en {self.price}"

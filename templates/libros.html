@@ -12,9 +12,9 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ libro.title }}</h5>
-          <p>escrito en {{ libro.year }} por {{ libro.author }}.</p>
+          <p>Escrito en {{ libro.year }} por {{ libro.author }}.</p>
   
-          <form action="/discos/agregar" method="get">
+          <form action="/libros/agregar" method="get">
             <input type="hidden" name="titulo" value="{{ libro.title }}">
             <input type="hidden" name="year" value="{{ libro.year }}">
             <input type="hidden" name="artist" value="{{ libro.author }}">

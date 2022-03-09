@@ -12,7 +12,8 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ instrumento.title }}</h5>
-          <p>marca {{ instrumento.marca }} {{ instrumento.price }}.</p>
+          <p>{{ instrumento.marca }} </p>
+         <p>{{"{:,.2f} €".format(instrumento.price) }} </p>
 
           <form action="/discos/agregar" method="get">
             <input type="hidden" name="titulo" value="{{ instrumento.title }}">

@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from routes.discos import discos
 from routes.libros import libros
 from routes.instrumentos import instrumentos
+from models import Libro
+import db
 
 UPLOAD_FOLDER = './static/img/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -23,7 +25,9 @@ def home():
 
 @app.route('/carrito')
 def carrito():
-
-    return render_template('carrito.html')
+    libros = db.session.query(Libro).all()
+    for libro in libros:
+        print(libro)
+    return render_template('carrito.html',todos_los_libros=libros)
 
 

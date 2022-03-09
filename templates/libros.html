@@ -12,12 +12,18 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ libro.title }}</h5>
-          <p>Escrito en {{ libro.year }} por {{ libro.author }}.</p>
+          <p>Escrito en {{ libro.year }} por {{ libro.author }}</p>
+          <p>Editorial: {{ libro.editorial }}</p>
+         <p>{{"{:,.2f} €".format(libro.price) }} </p>
+
   
           <form action="/libros/agregar" method="get">
             <input type="hidden" name="titulo" value="{{ libro.title }}">
             <input type="hidden" name="year" value="{{ libro.year }}">
             <input type="hidden" name="artist" value="{{ libro.author }}">
+            <input type="hidden" name="editorial" value="{{ libro.editorial }}">
+            <input type="hidden" name="price" value="{{ libro.price }}">
+
   
             <button type="submit" class="btn btn-primary">Añadir al carrito</button>
           </form>

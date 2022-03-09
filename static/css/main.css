@@ -34,3 +34,13 @@ button {
     border:  transparent;
 
 }
+
+.image{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    overflow: hidden;
+    margin: 5px;
+
+}

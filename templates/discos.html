@@ -14,10 +14,14 @@
         <h5 class="card-title">{{ disco.title }}</h5>
         <p>Lanzado en {{ disco.year }} por {{ disco.artist }}.</p>
 
+        <p>{{"{:,.2f} €".format(disco.price) }} </p>
+
+
         <form action="/discos/agregar" method="get">
           <input type="hidden" name="titulo" value="{{ disco.title }}">
           <input type="hidden" name="year" value="{{ disco.year }}">
           <input type="hidden" name="artist" value="{{ disco.artist }}">
+          <input type="hidden" name="price" value="{{ disco.price }}">
 
           <button type="submit" class="btn btn-primary">Añadir al carrito</button>
         </form>

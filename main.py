@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 from routes.discos import discos
 from routes.libros import libros
 from routes.instrumentos import instrumentos
@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 3 * 1000 * 1000
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app.secret_key = b'_5#/54?L"F4Q8z\n\xec]/'
 
 app.register_blueprint(discos)
 app.register_blueprint(libros)
@@ -38,12 +38,12 @@ def agregar_producto_carrito():
         product_id = request.form.get('id')
         product_name = request.form.get('name')
         product_price = request.form.get('price')
-        print(product_id)
+        product_cover = request.form.get('cover')
+
         if product_id and product_name and product_price and request.method == 'POST':
             CartProducts = {product_id: {
-                'name': product_name, 'price': product_price}}
+                'name': product_name, 'price': product_price, 'cover': product_cover}}
 
-            print(CartProducts)
             if 'CartProducts' in session:
                 print(session['CartProducts'])
                 if product_id in session['CartProducts']:
@@ -63,9 +63,19 @@ def agregar_producto_carrito():
 
 @app.route('/carrito')
 def carrito():
-    productos_carrito = session['CartProducts']
-    print(productos_carrito)
-    for producto in productos_carrito:
-        print(producto)
+    if 'CartProducts' in session:
+        productos_carrito = session['CartProducts']
+        print(productos_carrito)
+        for producto_id, item in productos_carrito.items():
+            print(producto_id, float(item['price']))
+    else:
+        productos_carrito = False
 
     return render_template('carrito.html', todos_los_productos=productos_carrito)
+
+
+@app.route('/vaciar_carrito')
+def vaciar_carrito():
+    # remove the username from the session if it's there
+    session.pop('CartProducts', None)
+    return redirect(url_for('home'))

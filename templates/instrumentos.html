@@ -15,10 +15,11 @@
           <p>{{ instrumento.marca }} </p>
          <p>{{"{:,.2f} €".format(instrumento.price) }} </p>
 
-          <form action="/discos/agregar" method="get">
-            <input type="hidden" name="titulo" value="{{ instrumento.title }}">
+          <form action="/agregar_producto_carrito" method="POST">
+            <input type="hidden" name="name" value="{{ instrumento.title }}">
             <input type="hidden" name="marca" value="{{ instrumento.marca }}">
-            <input type="hidden" name="precio" value="{{ instrumento.price }}">
+            <input type="hidden" name="price" value="{{ instrumento.price }}">
+            <input type="hidden" name="cover" value="{{ instrumento.cover }}">
 
             <button type="submit" class="btn btn-primary">Añadir al carrito</button>
           </form>

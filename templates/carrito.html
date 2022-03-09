@@ -1,24 +1,45 @@
-
 {% extends 'index.html' %} {% block lista %}
 
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <ul class="list-group">
-                {% for producto in todos_los_productos %}
-              <li class="list-group-item d-flex justify-content-between">
-                  <div class="image" >
-                      <img src="{{ url_for('static', filename='img/uploads/') }}{{producto.cover}}">
-                  </divclass>
-                  <div>
-                      <p>{{"{:,.2f} €".format(producto.price) }} </p>
-                  </div>
-              </li>
-                {% endfor %}
-            </ul>
-        </div>
+  {% if todos_los_productos %}
+  <div class="row">
+    <div class="col">
+      <ul class="list-group">
+        {% for producto_id, item in todos_los_productos.items() %}
+        <li class="list-group-item d-flex justify-content-between">
+          <div>
+            <div class="cart-item-image">
+              <img
+                src="{{ url_for('static', filename='img/uploads/') }}{{item['cover']}}"
+              />
+            </div>
+            <div class="cart-item-text">
+              <span class="h3">{{ item['name'] }}</span>
+              <div>
+                <a class="btn btn-danger btn-sm" href="#" role="button"
+                  >Eliminar</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="cart-item-precio">
+            <p class="precio">{{"{:,.2f} €".format(item['price']|float) }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="d-grid gap-2 col-6 mx-auto text-center py-5">
+        <a class="btn btn-danger" href="/vaciar_carrito" role="button"
+          >Vaciar carrito</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endif %}
 </div>
 
 {%endblock %}
-

@@ -1,6 +1,6 @@
-from crypt import methods
 import os
 import db
+from crypt import methods
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from models import Disco
 from werkzeug.utils import secure_filename
@@ -14,7 +14,9 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 carrito = []
+
 
 @discos.route('/discos')
 def consultar_discos():
@@ -23,11 +25,13 @@ def consultar_discos():
         print(disco)
     return render_template('discos.html', todos_los_discos=discos)
 
+
 @discos.route("/discos/agregar", methods=['GET', 'POST'])
-def agregar(*args):
-    carrito.append(*args)
+def agregar(args):
+    carrito.append(args)
     print(carrito)
     return redirect(url_for('discos.html'))
+
 
 @discos.route('/discos/crear-disco', methods=['GET', 'POST'])
 def crear_discos():

@@ -15,10 +15,17 @@
             </div>
             <div class="cart-item-text">
               <span class="h3">{{ item['name'] }}</span>
+              <p>
+                Product id: {{producto_id}}
+              </p>
               <div>
-                <a class="btn btn-danger btn-sm" href="#" role="button"
-                  >Eliminar</a
+                <form action="eliminar_producto" method="POST">
+                   <input type="hidden" name="id" value="{{ producto_id }}">
+                  <input type="submit" class="btn btn-danger btn-sm" value="eliminar"
+
                 >
+                </form>
+
               </div>
             </div>
           </div>

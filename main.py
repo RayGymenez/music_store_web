@@ -79,3 +79,17 @@ def vaciar_carrito():
     # remove the username from the session if it's there
     session.pop('CartProducts', None)
     return redirect(url_for('home'))
+
+@app.route('/eliminar_producto',methods=["POST"])
+def eliminar_producto():
+
+    product_id = request.form.get('id')
+    for key in list(session.keys()):
+        print (type(key))
+        print (type (product_id))
+        if (product_id== key):
+            session.pop(key)
+            print("producto eliminado")
+    return redirect(request.referrer)
+
+

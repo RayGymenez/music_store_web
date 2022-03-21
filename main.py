@@ -93,15 +93,14 @@ def vaciar_carrito():
 def eliminar_producto():
 
     product_id = request.form.get('id')
-    print(product_id)
-    for key in list(session.keys()):
-        print(key)
-        print(int(product_id))
-        if(int(product_id)== key[product_id]):
-            session.pop(str(key))
-            print("producto eliminado")
+
+    del session['CartProducts'][product_id]
+    productos_carrito = session['CartProducts']
+
+    session.pop('CartProducts', None)
+    print("producto eliminado")
+
+    session['CartProducts'] = productos_carrito
     return redirect(request.referrer)
-
-
 
 

@@ -60,3 +60,19 @@ button {
   color: darkslategray;
   font-size: medium;
 }
+
+.total{
+    font-size: 24px;
+    text-align: right;
+    padding: 20px;
+
+}
+
+.finalizar_pedido {
+    float: right;
+
+}
+
+.gracias{
+    text-align: center;
+}

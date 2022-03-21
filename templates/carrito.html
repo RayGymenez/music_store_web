@@ -19,7 +19,7 @@
                 Product id: {{producto_id}}
               </p>
               <div>
-                <form action="eliminar_producto" method="POST">
+                <form action="/eliminar_producto" method="POST">
                    <input type="hidden" name="id" value="{{ producto_id }}">
                   <input type="submit" class="btn btn-danger btn-sm" value="eliminar"
 
@@ -35,6 +35,19 @@
         </li>
         {% endfor %}
       </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {% if total %}
+
+      <p class="total">Total: {{total}} €</p>
+      <div>
+        <a href="/finalizar_pedido" class="finalizar_pedido btn btn-success">Finalizar Pedido</a>
+      </div>
+      {% else %}
+      <p class="total">Total: 0 €</p>
+      {% endif %}
     </div>
   </div>
   <div class="row">

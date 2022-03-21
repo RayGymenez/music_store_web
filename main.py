@@ -66,12 +66,21 @@ def carrito():
     if 'CartProducts' in session:
         productos_carrito = session['CartProducts']
         print(productos_carrito)
+        total=0
         for producto_id, item in productos_carrito.items():
             print(producto_id, float(item['price']))
+            total += float(item["price"])
     else:
         productos_carrito = False
+        total = False
 
-    return render_template('carrito.html', todos_los_productos=productos_carrito)
+    return render_template('carrito.html', todos_los_productos=productos_carrito,total=total)
+
+@app.route('/finalizar_pedido')
+def finalizar_pedido():
+    session.pop('CartProducts', None)
+    return render_template("gracias.html")
+
 
 
 @app.route('/vaciar_carrito')
@@ -84,12 +93,15 @@ def vaciar_carrito():
 def eliminar_producto():
 
     product_id = request.form.get('id')
+    print(product_id)
     for key in list(session.keys()):
-        print (type(key))
-        print (type (product_id))
-        if (product_id== key):
-            session.pop(key)
+        print(key)
+        print(int(product_id))
+        if(int(product_id)== key[product_id]):
+            session.pop(str(key))
             print("producto eliminado")
     return redirect(request.referrer)
+
+
 
 
